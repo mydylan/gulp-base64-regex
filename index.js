@@ -41,11 +41,12 @@ module.exports = function() {
         if (search instanceof RegExp) {
           str = String(file.contents);
           matchArray = str.match(search);
-          for(var i = 0; i < matchArray.length; i++) {
-            base64Code = toBase64(matchArray[i]);
-            file.contents = new Buffer(String(file.contents).replace(matchArray[i], base64Code));
+          if (matchArray !== null) {
+            for(var i = 0; i < matchArray.length; i++) {
+              base64Code = toBase64(matchArray[i]);
+              file.contents = new Buffer(String(file.contents).replace(matchArray[i], base64Code));
+            }            
           }
-
         }
         return callback(null, file);
       }
