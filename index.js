@@ -41,7 +41,7 @@ module.exports = function() {
         if (search instanceof RegExp) {
           str = String(file.contents);
           matchArray = str.match(search);
-          if (matchArray !== null) {
+          if (matchArray !== null && matchArray !== undefined) {
             for(var i = 0; i < matchArray.length; i++) {
               base64Code = toBase64(matchArray[i]);
               file.contents = new Buffer(String(file.contents).replace(matchArray[i], base64Code));
